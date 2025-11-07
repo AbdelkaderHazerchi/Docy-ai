@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DocyAI Chat</title>
+    <link rel="shortcut icon" href="Docy_ai.png" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- إضافة مكتبة Highlight.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <!-- إضافة لغات إضافية -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/htmlbars.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/xml.min.js"></script>
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar Overlay for Mobile -->
+      <div
+        class="sidebar-overlay"
+        id="sidebar-overlay"
+        onclick="toggleSidebar()"
+      ></div>
+
+      <!-- Sidebar -->
+      <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-title">المحادثات</div>
+          <button class="close-sidebar" onclick="toggleSidebar()">✕</button>
+        </div>
+        <button class="new-chat-btn" onclick="createNewChat()">
+          + محادثة جديدة
+        </button>
+        <div class="chats-list" id="chats-list">
+          <!-- Chat items will be loaded here -->
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <div class="header">
+          <div class="header-left">
+            <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+            <h1>DocyAI</h1>
+          </div>
+          <div class="header-buttons">
+            <button onclick="clearMemory()" id="cls_m" class="header-btn" title="مسح الذاكرة">
+              مسح الذاكرة
+            </button>
+            <button onclick="switch_theme()" id="theme_bt" class="header-btn" title="السمة">
+              السمة
+            </button>
+            <span id="now_model" class="header-btn"></span>
+          </div>
+        </div>
+
+        <!-- Memory Summary Indicator -->
+        <div class="memory-indicator" onclick="toggleMemoryContent()" title="ذاكرة المستخدم">
+          🧠 ذاكرة المستخدم:
+          <span id="memory-preview">انقر لعرض المعلومات المحفوظة عنك</span>
+        </div>
+        <div class="memory-content" id="memory-content">
+          <!-- Memory content will be displayed here -->
+        </div>
+
+        <dialog class="model_warn">
+          <span>
+            لقد وصلت الى الحد الأقصى المسموح به مع هذا النموذج<br />
+            سيتم التبديل الى نموذج آخر
+          </span>
+          <button id="close_model_warn" onclick="close_model_warn()">⨉</button>
+        </dialog>
+
+        <div id="chat-container">
+          <div id="chat-box">
+            <div class="say_hi" id="say_hi_"></div>
+          </div>
+        </div>
+
+        <div class="input-container">
+          <div id="input-area">
+            <textarea
+              id="userInput"
+              placeholder="اكتب رسالتك هنا..."
+              onkeydown="handleKeyPress(event)"
+              rows="1"
+            ></textarea>
+            <button id="send-btn" onclick="sendMessage()" title="send message">▲</button>
+            <!--<button id="send-btn" onclick="sendMessage()" title="">🎙</button>-->
+          </div>
+        </div>
+
+        <div id="warn">
+          يمكن أن يرتكب DocyAI أخطاء، تحقق من المعلومات المهمة | 
+          تحقق من 
+          <a href="privacy/privacy.html" target="_blank" rel="noopener noreferrer">سياسة الخصوصية</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
