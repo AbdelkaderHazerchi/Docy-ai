@@ -1,20 +1,5 @@
 // highlight.js
-export function setupHighlight() {
-  hljs.configure({
-    tabReplace: '  ',
-    languages: ['javascript', 'python', 'java', 'cpp', 'html', 'css', 'xml']
-  });
-
-  // Automatically enhance code blocks
-  function enhanceCodeBlocks() {
-    console.log('🔄 Enhancing Code Blocks');
-    // Implementation of the enhance block logic
-  }
-
- document.ready<Reference exported_modes
-```javascript name=highlight.js
-// highlight.js
-export function setupHighlight() {
+function setupHighlight() {
   hljs.configure({
     tabReplace: '  ', // Replace tabs with 2 spaces
     languages: ['javascript', 'python', 'java', 'cpp', 'html', 'css', 'xml']
@@ -24,7 +9,7 @@ export function setupHighlight() {
 }
 
 // Function to enhance code blocks (UI improvements and syntax highlighting)
-export function enhanceCodeBlocks() {
+function enhanceCodeBlocks() {
   console.log('🔄 Enhancing code blocks...');
 
   const preElements = document.querySelectorAll('pre:not(.code-block pre)');
@@ -78,7 +63,7 @@ export function enhanceCodeBlocks() {
 }
 
 // Copy functionality
-export function copyCodeFromBlock(button) {
+function copyCodeFromBlock(button) {
   const codeContainer = button.closest('.code-block');
   const codeElement = codeContainer.querySelector('code');
   const codeText = codeElement.textContent;
