@@ -37,6 +37,7 @@ function createNewChat() {
 }
 
 function switchToChat(chatId) {
+  currentChatId = chatId;
   const chat = chats.find((c) => c.id === chatId);
   // Switch the UI elements and render chat messages
   if (chat) renderMessages(chat.messages);
