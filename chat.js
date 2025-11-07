@@ -2,6 +2,24 @@
 
 let chats = JSON.parse(localStorage.getItem('mindoai_chats')) || [];
 
+function renderChatsList() {
+  const chatsList = document.getElementById('chats-list');
+  chatsList.innerHTML = '';
+
+  chats.forEach((chat) => {
+    const chatElement = document.createElement('div');
+    chatElement.className = `chat-item ${chat.id === currentChatId ? 'active' : ''}`;
+    chatElement.onclick = () => switchToChat(chat.id);
+
+    chatElement.innerHTML = `
+      <div class="chat-title">${chat.title}</div>
+      <button class="delete-chat" onclick="event.stopPropagation(); deleteChat('${chat.id}')">×</button>
+    `;
+
+    chatsList.appendChild(chatElement);
+  });
+}
+
 function createNewChat() {
   const chatId = `chat_${Date.now()}`;
   const newChat = {
