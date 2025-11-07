@@ -1,8 +1,8 @@
 // chat.js
 
-export let chats = JSON.parse(localStorage.getItem('mindoai_chats')) || [];
+let chats = JSON.parse(localStorage.getItem('mindoai_chats')) || [];
 
-export function createNewChat() {
+function createNewChat() {
   const chatId = `chat_${Date.now()}`;
   const newChat = {
     id: chatId,
@@ -18,13 +18,13 @@ export function createNewChat() {
   switchToChat(chatId);
 }
 
-export function switchToChat(chatId) {
+function switchToChat(chatId) {
   const chat = chats.find((c) => c.id === chatId);
   // Switch the UI elements and render chat messages
   if (chat) renderMessages(chat.messages);
 }
 
-export function loadChats() {
+function loadChats() {
   const savedChats = JSON.parse(localStorage.getItem('mindoai_chats'));
   if (savedChats) {
     chats = savedChats;
@@ -36,7 +36,7 @@ function saveChats() {
   localStorage.setItem('mindoai_chats', JSON.stringify(chats));
 }
 
-export function sendMessage(userMessage) {
+function sendMessage(userMessage) {
   // Simplified implementation for sending and storing user messages
   if (!currentChatId) return;
 
